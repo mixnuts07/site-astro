@@ -1,15 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <a href="/">Home</a>
-    <a href="/about">About</a>
-    <a href="/blog">Blog</a>
-    <h1>about me</h1>
-    <h2>... about my astro site</h2>
-</body>
+---
+import '../styles/global.css'
+
+const pageTitle = "about me"
+
+const identity = {
+    firstName: "Yamamoto",
+    country: "Japan",
+    occupation: "Software Engineer",
+    hobbies: ["Development", "Reading"]
+}
+
+const skills = ["TypeScript", "React", "Next,js", "astro", "Lit", "Rust", "Kotlin"]
+
+const skillColor = 'navy'
+---
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{pageTitle}</title>
+  </head>
+  <style define:vars={{skillColor}}>
+    h1 {
+        color: purple;
+        font-size: 4rem;
+    }
+    .skill {
+        color: var(--skillColor);
+        font-weight: bold;
+    }
+  </style>
+  <body>
+    <a href="/">ホーム</a>
+    <a href="/about/">概要</a>
+    <a href="/blog/">ブログ</a>
+    <h1>{pageTitle}</h1>
+    <ul>
+        <li>I am {identity.firstName}</li>
+        <li>lived in {identity.country} and work as {identity.occupation}</li>
+        <li>My hobbies are {identity.hobbies[0]} and {identity.hobbies[1]}</li>
+    </ul>
+    <p>my skills are {skills.map(skill => <li class="skill">{skill}</li>)}</p>
+  </body>
 </html>
